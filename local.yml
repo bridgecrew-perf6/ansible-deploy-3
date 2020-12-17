@@ -5,6 +5,7 @@
 
 
   tasks:
+    
   - name: install additional repos 
     package:
       name:
@@ -12,30 +13,26 @@
         - void-repo-multilib
         - void-repo-multilib-nonfree
       update_cache: yes
+  - include_tasks: packages/packages_utilities.yml	
   - name: install multiple package 
     package:
       name:
-        - htop
-        - tmux
-        - vifm
         - keepassxc
         - chromium
+        - epiphany
+        - icecat
+        - firefox-esr
         - filezilla
         - texmaker
-        - cryfs
-        - fzf 
+        - libreoffice
         - dconf-editor
         - zenity 
         - dislocker
         - gparted
-        - curl
         - gnupg
         - pdftk
         - git-cola
-        - rsync
-        - neofetch
         - vlc
-        - git
         - menulibre
         - texlive-full
         - geeqie
@@ -43,43 +40,26 @@
         - flatpak
         - octoxbps
         - gnupg2-scdaemon
-        - bash-completion
         - gksu
-        - vim-gnupg
-        - vim-x11
-        - vim-huge
-        - vim-colorschemes  
         - ulauncher
         - void-docs
-        - tlp
-        - bash-completion
-        - git
-        - zip
-        - unzip
-        - p7zip
         - xdg-user-dirs 
-        - curl
         - base-devel
         - arc-icon-theme
         - arc-theme
         - breeze-cursors
         - papirus-icon-theme
         - xclip 
-        - wget
         - blueman
         - bluez
         - thunderbird
-        - geany
         - python3-devel
-        - epiphany
-        - ntfs-3g
+        - VeraCrypt
         - Signal-Desktop
         - youtube-dl
-        - cronie
-        - virtualbox-ose
-        - virtualbox-ose-guest
-        - virtualbox-ose-dkms
-       
+        - pluma
+        - timeshift
+        - yadm
       update_cache: yes    
          
   - name: copy .bashrc file   
@@ -93,26 +73,6 @@
     command: gpg --import files/pub.key
     
     
-  - name: add ansible user
-    user:
-      name: velociraptor
-      system: yes
- 
-  - name: set up sudo for ansible user
-    copy:
-      src: files/sudoer_velociraptor
-      dest: /etc/sudoers.d/velociraptor
-      owner: root
-      group: root
-      mode: 0440
- 
-  - name: add ansible-pull cron job
-    cron:
-      name: ansible auto-provision
-      user: velociraptor
-      minute: "*/10"
-      job: ansible-pull -o -U https://github.com/kapilks11/ansible-deploy.git   
-
   - name: Auto start ulauncher
     copy:
       src: files/ulauncher.desktop
@@ -121,11 +81,15 @@
       group: user
       mode: 0600
       
-  - name: Auto start ulauncher
+  - name: Config GPG-Agent
     copy:
       src: files/gpg-agent.conf
       dest: /home/user/.gnupg/gpg-agent.conf
       owner: user
       group: user
       mode: 0600      
-
+  
+  - include_tasks: config/keybindings.yml
+  - include_tasks: config/terminal.yml
+  - include_tasks: config/caja.yml
+  - include_tasks: config/workspace_settings.yml
