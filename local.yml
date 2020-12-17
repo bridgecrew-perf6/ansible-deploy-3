@@ -9,7 +9,6 @@
       name:
         - htop
         - tmux
-        - vim-nox
 
 #  - name: copy wallpaper file
 #    copy:
