@@ -40,9 +40,9 @@
         - texlive-full
         - geeqie
         - darktable
+        - scdaemon
         - flatpak
         - octoxbps
-        - gnupg2-scdaemon
         - bash-completion
         - gksu
         - vim-gnupg
@@ -75,16 +75,12 @@
         - ntfs-3g
         - Signal-Desktop
         - youtube-dl
-   
       update_cache: yes    
-      
-  - name: copy .bashrc file   
-    copy:
-     src: files/bashrc
-     dest: /home/user/.bashrc
-     owner: user
-     group: user
-
-  - name: import public key  
-    command: gpg --import files/pub.key
+  - name: install additional repos 
+    package:
+      name:
+        - void-repo-nonfree
+        - void-repo-multilib
+        - void-repo-multilib-nonfree
+      update_cache: yes
 
