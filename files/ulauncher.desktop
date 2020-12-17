@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=env GDK_BACKEND=x11 /usr/bin/ulauncher --hide-window
+Hidden=false
+X-MATE-Autostart-enabled=true
+Name[en_US]=ulauncher
+Name=Ulauncher
+Comment[en_US]=
+Comment=
+X-MATE-Autostart-Delay=5

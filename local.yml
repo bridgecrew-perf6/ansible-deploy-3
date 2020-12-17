@@ -75,9 +75,13 @@
         - ntfs-3g
         - Signal-Desktop
         - youtube-dl
-   
+        - cronie
+        - virtualbox-ose
+        - virtualbox-ose-guest
+        - virtualbox-ose-dkms
+       
       update_cache: yes    
-      
+         
   - name: copy .bashrc file   
     copy:
      src: files/bashrc
@@ -87,4 +91,41 @@
 
   - name: import public key  
     command: gpg --import files/pub.key
+    
+    
+  - name: add ansible user
+    user:
+      name: velociraptor
+      system: yes
+ 
+  - name: set up sudo for ansible user
+    copy:
+      src: files/sudoer_velociraptor
+      dest: /etc/sudoers.d/velociraptor
+      owner: root
+      group: root
+      mode: 0440
+ 
+  - name: add ansible-pull cron job
+    cron:
+      name: ansible auto-provision
+      user: velociraptor
+      minute: "*/10"
+      job: ansible-pull -o -U https://github.com/kapilks11/ansible-deploy.git   
+
+  - name: Auto start ulauncher
+    copy:
+      src: files/ulauncher.desktop
+      dest: /home/user/.config/autostart/ulauncher.desktop
+      owner: user
+      group: user
+      mode: 0600
+      
+  - name: Auto start ulauncher
+    copy:
+      src: files/gpg-agent.conf
+      dest: /home/user/.gnupg/gpg-agent.conf
+      owner: user
+      group: user
+      mode: 0600      
 
