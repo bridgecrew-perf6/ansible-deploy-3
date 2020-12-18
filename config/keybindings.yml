@@ -1,0 +1,112 @@
+- name: mate | keybindings | set primary browser keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom0/name", value: "'browser'" }
+    - { key: "/org/mate/desktop/keybindings/custom0/binding", value: "'<Mod4>b'" }
+    - { key: "/org/mate/desktop/keybindings/custom0/action", value: "'firefox'" }
+
+- name: mate | keybindings | set file manager keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom2/name", value: "'file manager'" }
+    - { key: "/org/mate/desktop/keybindings/custom2/binding", value: "'<Mod4>f'" }
+    - { key: "/org/mate/desktop/keybindings/custom2/action", value: "'caja --no-desktop /home/user'" }
+
+
+- name: mate | keybindings | set keepassxc keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom4/name", value: "'keepass'" }
+    - { key: "/org/mate/desktop/keybindings/custom4/binding", value: "'<Mod4>k'" }
+    - { key: "/org/mate/desktop/keybindings/custom4/action", value: "'keepassxc'" }
+
+
+- name: mate | keybindings | set terminal keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom7/name", value: "'terminal'" }
+    - { key: "/org/mate/desktop/keybindings/custom7/binding", value: "'<Mod4>t'" }
+    - { key: "/org/mate/desktop/keybindings/custom7/action", value: "'mate-terminal'" }
+
+- name: mate | keybindings | set text editor keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom8/name", value: "'text editor'" }
+    - { key: "/org/mate/desktop/keybindings/custom8/binding", value: "'<Mod4>e'" }
+    - { key: "/org/mate/desktop/keybindings/custom8/action", value: "'pluma'" }
+
+- name: mate | keybindings | set tmux keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom9/name", value: "'tmux'" }
+    - { key: "/org/mate/desktop/keybindings/custom9/binding", value: "'<Shift><Mod4>t'" }
+    - { key: "/org/mate/desktop/keybindings/custom9/action", value: "'mate-terminal -e tmux'" }
+
+- name: mate | keybindings | set keybinding for switching between workspaces
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-left", value: "'<Primary>Left'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-right", value: "'<Primary>Right'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-1", value: "'<Primary>1'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-2", value: "'<Primary>2'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-3", value: "'<Primary>3'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-4", value: "'<Primary>4'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-5", value: "'<Primary>5'" }
+    - { key: "/org/mate/marco/global-keybindings/switch-to-workspace-6", value: "'<Primary>6'" }
+
+- name: mate | keybindings | set keybinding for moving windows to other workspaces
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/marco/window-keybindings/move-to-workspace-left", value: "'<Primary><Shift>Left'" }
+    - { key: "/org/mate/marco/window-keybindings/move-to-workspace-right", value: "'<Primary><Shift>Right'" }
+
+- name: mate | keybindings | set tiling keybindings
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+      key: "{{ item.key }}"
+      value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/marco/window-keybindings/maximize", value: "'<Mod4>Up'" }
+    - { key: "/org/mate/marco/window-keybindings/tile-to-side-e", value: "'<Mod4>Right'" }
+    - { key: "/org/mate/marco/window-keybindings/tile-to-side-w", value: "'<Mod4>Left'" }
+    - { key: "/org/mate/marco/window-keybindings/unmaximize", value: "'<Mod4>Down'" }
+
+- name: mate | keybindings | set keybinding for locking screen
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "/org/mate/settings-daemon/plugins/media-keys/screensaver"
+    value: "'<Mod4>l'"

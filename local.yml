@@ -90,6 +90,7 @@
       mode: 0600      
   
   - include_tasks: config/keybindings.yml
+  - include_tasks: config/locale.yml
   - include_tasks: config/terminal.yml
   - include_tasks: config/caja.yml
   - include_tasks: config/workspace_settings.yml

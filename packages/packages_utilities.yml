@@ -1,0 +1,47 @@
+- name: system setup | utilities | install utility packages
+  tags: packages,system,settings
+  package:
+    state: latest
+    name:
+      - at
+      - colordiff
+      - curl
+      - htop
+      - iotop
+      - lsof
+      - mc
+      - mosh
+      - ncdu
+      - neofetch
+      - net-tools
+      - nmap
+      - ranger
+      - rsync
+      - screen
+      - tmux
+      - traceroute
+      - wget
+      - whois
+      - vifm
+      - cryfs
+      - fzf 
+      - curl
+      - git
+      - vim-gnupg
+      - vim-x11
+      - vim-huge
+      - vim-colorschemes 
+      - bash-completion
+      - tlp
+      - zip
+      - unzip
+      - p7zip
+      - curl
+      - wget
+      - ntfs-3g
+      - cronie
+      - vpm
+      - vsv
+      - virt-manager
+      - libvirt
+      - qemu
