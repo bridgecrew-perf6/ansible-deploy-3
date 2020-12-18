@@ -88,7 +88,14 @@
       owner: user
       group: user
       mode: 0600      
-  
+  - name: copy appimage launcher 
+    copy: src=files/{{ item }} dest=/home/user/.local/share/applications/
+    with_items:
+    - joplin.desktop
+    - etcher.desktop
+    - ledger_live.desktop
+    - onlyoffice.desktop
+    - stacer.desktop
   - include_tasks: config/keybindings.yml
   - include_tasks: config/locale.yml
   - include_tasks: config/terminal.yml
