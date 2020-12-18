@@ -93,7 +93,7 @@
     with_items:
     - joplin.desktop
     - etcher.desktop
-    - legder_live.desktop
+    - ledger_live.desktop
     - onlyoffice.desktop
     - stacer.desktop
   - include_tasks: config/keybindings.yml
