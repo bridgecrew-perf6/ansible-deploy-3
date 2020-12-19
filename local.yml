@@ -5,7 +5,12 @@
 
 
   tasks:
-    
+  - command: "{{ ansible_python_interpreter | default('/usr/bin/python') }} -c 'import {{ module }}; 	     print({{ module }}.__version__)'"
+    vars:
+      module: psycopg2
+    register: test
+  - debug:
+      var: test.stdout
   - name: install additional repos 
     package:
       name:
@@ -13,55 +18,16 @@
         - void-repo-multilib
         - void-repo-multilib-nonfree
       update_cache: yes
-  - include_tasks: packages/packages_utilities.yml	
-  - name: install multiple package 
-    package:
-      name:
-        - keepassxc
-        - chromium
-        - epiphany
-        - icecat
-        - firefox-esr
-        - filezilla
-        - texmaker
-        - libreoffice
-        - dconf-editor
-        - zenity 
-        - dislocker
-        - gparted
-        - gnupg
-        - pdftk
-        - git-cola
-        - vlc
-        - menulibre
-        - texlive-full
-        - geeqie
-        - darktable
-        - flatpak
-        - octoxbps
-        - gnupg2-scdaemon
-        - gksu
-        - ulauncher
-        - void-docs
-        - xdg-user-dirs 
-        - base-devel
-        - arc-icon-theme
-        - arc-theme
-        - breeze-cursors
-        - papirus-icon-theme
-        - xclip 
-        - blueman
-        - bluez
-        - thunderbird
-        - python3-devel
-        - VeraCrypt
-        - Signal-Desktop
-        - youtube-dl
-        - pluma
-        - timeshift
-        - yadm
-      update_cache: yes    
-         
+  - include_tasks: packages/packages_utilities.yml      
+  - include_tasks: packages/packages_Applications.yml		
+  - include_tasks: config/keybindings.yml
+#  - include_tasks: config/locale.yml
+  - include_tasks: config/terminal.yml
+  - include_tasks: config/caja.yml
+  - include_tasks: config/workspace_settings.yml
+  - include_tasks: service.yml	    
+  - include_tasks: config/panel.yml	 
+   
   - name: copy .bashrc file   
     copy:
      src: files/bashrc
@@ -72,7 +38,7 @@
   - name: import public key  
     command: gpg --import files/pub.key
     
-    
+  
   - name: Auto start ulauncher
     copy:
       src: files/ulauncher.desktop
@@ -96,8 +62,13 @@
     - ledger_live.desktop
     - onlyoffice.desktop
     - stacer.desktop
-  - include_tasks: config/keybindings.yml
-  - include_tasks: config/locale.yml
-  - include_tasks: config/terminal.yml
-  - include_tasks: config/caja.yml
-  - include_tasks: config/workspace_settings.yml
+
+  - name: copy udev rules for yubikey 
+    copy: src=files/{{ item }} dest=/etc/udev/rules.d/
+    with_items:
+    - 69-yubikey.rules
+    - 70-u2f.rules
+    - 70-yubikey.rules
+
+
+

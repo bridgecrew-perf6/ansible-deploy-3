@@ -1,0 +1,17 @@
+- name: Start service libvirtd, if not started
+  service:
+    name: libvirtd
+    state: started
+    enabled: yes
+
+- name: Start service libvirtd, if not started
+  service:
+    name: virtlockd
+    state: started
+    enabled: yes
+
+- name: Start service libvirtd, if not started
+  service:
+    name: virtlogd
+    state: started
+    enabled: yes

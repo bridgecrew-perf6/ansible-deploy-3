@@ -1,0 +1,36 @@
+- name: system setup | Applications | 
+  tags: packages,system,Applications
+  package:
+    state: latest
+    name:
+      - keepassxc
+      - chromium
+      - epiphany
+      - icecat
+      - firefox-esr
+      - filezilla
+      - texmaker
+      - libreoffice
+      - arc-icon-theme
+      - arc-theme
+      - breeze-cursors
+      - papirus-icon-theme
+      - xclip 
+      - blueman
+      - bluez
+      - thunderbird
+      - VeraCrypt
+      - Signal-Desktop
+      - zenity 
+      - dislocker
+      - gparted
+      - pdftk
+      - git-cola
+      - vlc
+      - menulibre
+      - geeqie
+      - darktable
+      - flatpak
+      - octoxbps
+      - ulauncher
+      - void-docs

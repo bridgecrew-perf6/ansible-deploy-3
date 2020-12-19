@@ -45,3 +45,13 @@
       - virt-manager
       - libvirt
       - qemu
+      - dconf-editor
+      - gnupg2-scdaemon
+      - void-docs
+      - base-devel
+      - youtube-dl
+      - pluma
+      - timeshift
+      - yadm
+      - python3-devel
+      - python3-psycopg2

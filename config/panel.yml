@@ -1,0 +1,16 @@
+# Desktop
+- name: mate | panel | bottem
+  tags: caja,mate
+  become_user: user
+  dconf:
+    key: "/org/mate/panel/toplevels/top/orientation"
+    value: "'bottom'"
+
+- name: mate | panel | size
+  tags: caja,mate
+  become_user: user
+  dconf:
+    key: "/org/mate/panel/toplevels/top/size"
+    value: "30"
+
+

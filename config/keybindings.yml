@@ -44,6 +44,28 @@
     - { key: "/org/mate/desktop/keybindings/custom7/binding", value: "'<Mod4>t'" }
     - { key: "/org/mate/desktop/keybindings/custom7/action", value: "'mate-terminal'" }
 
+- name: mate | keybindings | set terminal keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom7/name", value: "'terminal'" }
+    - { key: "/org/mate/desktop/keybindings/custom7/binding", value: "'<alt><ctrl>t'" }
+    - { key: "/org/mate/desktop/keybindings/custom7/action", value: "'mate-terminal'" }
+
+- name: mate | keybindings | set jopline keybinding
+  tags: mate,mate-keybindings
+  become_user: user
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/mate/desktop/keybindings/custom7/name", value: "'terminal'" }
+    - { key: "/org/mate/desktop/keybindings/custom7/binding", value: "'<Mod4>j'" }
+    - { key: "/org/mate/desktop/keybindings/custom7/action", value: "'/home/user/.joplin/Joplin.AppImage'" }
+
 - name: mate | keybindings | set text editor keybinding
   tags: mate,mate-keybindings
   become_user: user
